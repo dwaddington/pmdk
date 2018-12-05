@@ -78,6 +78,7 @@ LIBPMEMOBJ_1.0 {
 		pmemobj_root;
 		pmemobj_root_construct;
 		pmemobj_root_size;
+		pmemobj_ex_pool_get_region;
 		pmemobj_first;
 		pmemobj_next;
 		pmemobj_list_insert;

@@ -37,6 +37,7 @@
 #include <limits.h>
 #include <wchar.h>
 #include <stdbool.h>
+#include <assert.h>
 
 #include "valgrind_internal.h"
 #include "libpmem.h"
@@ -2859,6 +2860,30 @@ pmemobj_root_size(PMEMobjpool *pop)
 		return pop->root_size;
 	} else
 		return 0;
+}
+/*
+ * pmemobj_ex_pool_get_region - (extension) used to iterate mapped regions for a pool 
+ */
+int
+pmemobj_ex_pool_get_region(PMEMobjpool *pop, unsigned region, void** out_base, size_t* out_len)
+{
+  struct pool_set * ps = pop->set;
+  if(ps == NULL) return -1;
+  struct pool_replica * repl = ps->replica[0]; /* just first replica */
+  if(ps == NULL) return -1;
+
+  if(region >= repl->nparts)
+    return -2; /* no more parts */
+
+  struct pool_set_part* part = &repl->part[region];
+  assert(part);
+  if(part == NULL)
+    return -1;
+  
+  *out_base = part->addr;
+  *out_len = part->size;
+
+  return 0;
 }
 
 /*

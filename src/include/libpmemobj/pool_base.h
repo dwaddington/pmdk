@@ -118,6 +118,9 @@ PMEMoid pmemobj_root_construct(PMEMobjpool *pop, size_t size,
  */
 size_t pmemobj_root_size(PMEMobjpool *pop);
 
+/* Get region mappings associated with a pool.  Return 0 on success, -1 on invalid region. */
+int pmemobj_ex_pool_get_region(PMEMobjpool *pop, unsigned region, void** out_base, size_t* out_len);
+
 #ifdef __cplusplus
 }
 #endif
