@@ -46,3 +46,4 @@ SOURCE +=\
 include ../Makefile.inc
 
 LIBS += -pthread -lpmem $(LIBNDCTL)
+CFLAGS += $(shell $(PKG_CONFIG) --cflags libndctl)

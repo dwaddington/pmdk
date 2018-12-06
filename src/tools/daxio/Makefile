@@ -46,6 +46,7 @@ LIBPMEMCOMMON=y
 
 LIBS += $(LIBNDCTL)
 LIBS += $(LIBDAXCTL)
+CFLAGS += $(shell $(PKG_CONFIG) --cflags libndctl)
 
 MANPAGES = $(TOP)/doc/daxio.1
 

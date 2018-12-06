@@ -39,3 +39,4 @@ include pmemcommon.inc
 include ../Makefile.inc
 
 CFLAGS += -DUSE_LIBDL
+CFLAGS += $(shell $(PKG_CONFIG) --cflags libndctl)
